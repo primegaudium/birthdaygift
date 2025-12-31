@@ -7,34 +7,41 @@
 
   <style>
     :root {
-      --bg:#0f1724;
-      --card:#0b1220;
+      --bg:#0f1423;
+      --card:rgba(255,255,255,0.08);
       --accent:#ffd166;
-      --muted:#9aa6b2;
+      --accent2:#ff8a65;
+      --text:#e9eef6;
       --heart:#ff6b8b;
+      --glass-border:rgba(255,255,255,0.18);
     }
+    
     html, body {
       height:100%;
       margin:0;
       font-family:Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
     }
     body {
-      background:linear-gradient(180deg,#071124 0%, #0b2030 100%);
-      color:#e6eef6;
-      display:grid;
-      place-items:center;
+      background:radial-gradient(circle at top,#0c182f,#07101e 60%,#000);
+      color:var(--text);
+      display:flex;
+      justify-content:center;
+      align-items:center;
       padding:24px;
       overflow-x:hidden;
     }
+
+    /* Card */
     .card {
-      background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      transition:0.4s;
-      border-radius:18px;
-      padding:28px;
-      max-width:720px;
+      background:var(--card);
+      backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+      border-radius:22px;
+      padding:32px;
+      max-width:750px;
       width:100%;
-      box-shadow:0 10px 35px rgba(2,6,23,0.6);
       text-align:center;
+      box-shadow:0 0 55px rgba(0,0,0,0.65);
       animation: fadeUp 0.8s ease-out;
     }
     @keyframes fadeUp {
@@ -42,44 +49,75 @@
       to {opacity:1; transform:translateY(0);}
     }
 
-    /* typewriter title */
+    /* Title — Typewriter */
     h1 {
-      font-size:28px;
+      font-size:30px;
+      font-weight:700;
       overflow:hidden;
       white-space:nowrap;
       width:0;
-      animation: typing 3s steps(30,end) forwards;
+      margin-bottom:6px;
+      animation: typing 3s steps(35,end) forwards;
+      background:linear-gradient(90deg,#fff,var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
     @keyframes typing { to { width:100%; } }
 
+    /* Texts */
+    p.lead {
+      color:#a8b3c7;
+      margin-top:0;
+      margin-bottom:20px;
+      font-size:16px;
+    }
+    .small {
+      font-size:15px;
+      line-height:1.6;
+      color:#cfd9e6;
+      margin:16px 0;
+    }
+
+    /* Input + Button */
     input[type=text] {
-      width:90%;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.1);
-      background:rgba(255,255,255,0.05);
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      border:none;
+      background:rgba(255,255,255,0.08);
       color:#fff;
       font-size:18px;
-      margin-top:5px;
+      margin-top:8px;
+      outline:1px solid rgba(255,255,255,0.15);
+      transition:0.25s;
+    }
+    input[type=text]:focus {
+      outline:2px solid var(--accent);
+      background:rgba(255,255,255,0.12);
     }
     button {
-      margin-top:12px;
-      padding:12px 20px;
-      border-radius:10px;
-      border:0;
-      background:linear-gradient(90deg,var(--accent),#ff8a65);
+      margin-top:14px;
+      padding:12px 22px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
       color:#012;
       font-weight:700;
       font-size:18px;
       cursor:pointer;
-      transition:0.2s;
+      border:none;
+      transition:0.3s;
+      width:100%;
+      box-shadow:0 0 12px rgba(255,209,102,0.35);
     }
-    button:hover { filter:brightness(1.15); box-shadow:0 0 16px rgba(255,209,102,0.6); }
+    button:hover {
+      filter:brightness(1.18);
+      box-shadow:0 0 18px rgba(255,209,102,0.6);
+    }
 
-    /* reveal pop */
+    /* Reveal */
     .reveal {
       display:none;
-      margin-top:18px;
+      margin-top:25px;
       animation: pop 0.6s ease-out forwards;
     }
     @keyframes pop {
@@ -87,24 +125,24 @@
       to {transform:scale(1); opacity:1;}
     }
 
-    /* hearts floating background */
-    .heart-bg span{
-      position:fixed;
-      color:var(--heart);
-      font-size:18px;
-      animation:float 8s infinite linear;
-      opacity:0.4;
-      pointer-events:none;
+    .final-msg h2:first-child {
+      font-size:26px;
+      margin-bottom:4px;
+      background:linear-gradient(90deg,#fff,var(--accent));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
-    @keyframes float {
-      from {transform:translateY(100vh) scale(0.8);}
-      to {transform:translateY(-20vh) scale(1.6);}
+    .final-msg h2:last-of-type {
+      margin-top:0;
+      font-size:22px;
+      background:linear-gradient(90deg,#ffafbd,#ffc3a0);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
 
+    /* GIF */
     #gifLove {
       width:100%;
-      border-radius:12px;
-      margin-top:15px;
+      border-radius:14px;
+      margin-top:22px;
       animation:popIn 0.8s ease-out;
     }
     @keyframes popIn {
@@ -112,25 +150,38 @@
       100% { opacity:1; transform: scale(1); }
     }
 
-    footer { margin-top:16px; font-size:12px; color:var(--muted); }
+    footer { margin-top:20px; font-size:13px; color:#9aa6b2; }
 
+    /* Confetti */
     #confetti {
       position:fixed;
-      left:0;
-      top:0;
+      left:0; top:0;
       pointer-events:none;
-      width:100%;
-      height:100%;
+      width:100%; height:100%;
       z-index:999;
     }
 
+    /* Floating hearts */
+    .heart-bg span{
+      position:fixed;
+      color:var(--heart);
+      font-size:20px;
+      animation:float 9s infinite linear;
+      opacity:0.4;
+      pointer-events:none;
+      z-index:-1;
+    }
+    @keyframes float {
+      from {transform:translateY(100vh) scale(0.7);}
+      to {transform:translateY(-20vh) scale(1.7);}
+    }
+
     @media(max-width:480px){
-      h1{font-size:22px;}
-      .card{padding:20px;}
+      h1{font-size:24px;}
+      .card{padding:22px;}
       input{font-size:16px;}
       button{font-size:16px;}
     }
-
   </style>
 </head>
 
@@ -148,18 +199,17 @@
     <p class="lead">Solve the riddle to reveal a tiny surprise.</p>
 
     <div class="puzzle">
-      <div style="font-weight:600;margin-bottom:12px">Riddle</div>
-
-      <div style="font-size:18px;margin-bottom:14px">
+      <strong style="font-size:18px;letter-spacing:0.5px;">Riddle</strong><br><br>
+      <p style="font-size:18px;line-height:1.5;margin:0 0 16px;">
         I am soft, I am small <br>
         hated by your man and I steal his kisses all. <br>
-        I stay with you close, and off-charts his envy goes <br>
+        I stay with you close, and off-charts his envy goes — <br>
         What am I?
-      </div>
+      </p>
 
-      <input id="answer" type="text" placeholder="Type your answer here" autocomplete="off" />
+      <input id="answer" type="text" placeholder="Type your answer here..." autocomplete="off" />
       <button id="check">Check answer</button>
-      <div class="hint" style="font-size:13px;margin-top:8px;color:#9aa6b2;">Hint: no hint heh pagal.</div>
+      <p style="font-size:14px;opacity:0.7;margin-top:10px;">Hint: no hint heh pagal.</p>
     </div>
 
 
@@ -168,14 +218,20 @@
       <div class="final-msg">
         <h2>You did it 🎉</h2>
         <h2>HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
-        <p class="small"> I love you so much nishka. We all do. Thank you for blessing us everyday with your beautiful face and calming presence. You light up our minds and keep us inspired. Yes, inspired. You work so hard my baby. I have so much respect for you. I want to just hold you and cuddle for hours and let you know how much i love you. I will kiss your from head to toe and stare at your sparkling eyes until I melt in your arms and fall asleep. My sweet princess is so cute that she deserves the world. </p>
 
-        <p class="small"> May this year bring so much good luck, good health, a lot of blessings, purpose and love 😺💖</p>
+        <p class="small">
+          I love you so much Nishka. You bless every day with your beautiful face and calming presence.
+          You inspire me more than you know — your hard work, your heart, your softness, everything.
+          I want to just hold you and cuddle you for hours and kiss you from head to toe until I melt in your arms.
+          My sweet princess deserves the world — and I'm trying every day to build it for you. 💛
+        </p>
 
-        <!-- 🐱 Replace video with your GIF -->
-        <img id="gifLove" 
-             src="https://media1.tenor.com/m/arqlNu8gyJYAAAAC/cat-cat-jumping.gif" 
-             alt="cute jumping cat">
+        <p class="small">
+          May this year bring blessings, good health, purpose, peace, smiles,
+          and the kind of love that feels like home — forever. 😺💖
+        </p>
+
+        <img id="gifLove" src="https://media1.tenor.com/m/arqlNu8gyJYAAAAC/cat-cat-jumping.gif" alt="cute jumping cat">
       </div>
     </div>
 
@@ -188,11 +244,11 @@
   <script>
     /* floating hearts generator */
     const hearts = document.querySelector(".heart-bg");
-    for(let i=0; i<22; i++){
+    for(let i=0; i<25; i++){
       let h = document.createElement("span");
       h.innerHTML = "❤️";
       h.style.left = Math.random()*100 + "%";
-      h.style.animationDelay = (Math.random()*5)+"s";
+      h.style.animationDelay = (Math.random()*6)+"s";
       hearts.appendChild(h);
     }
 
@@ -202,40 +258,39 @@
 
     const accepted = ["chomu","Chomu","CHOMU","chomuu","chomu🥺"];
 
-    function normalize(s){
-      return s.trim().toLowerCase().replace(/[^a-z0-9]/g,"");
-    }
+    function normalize(s){ return s.trim().toLowerCase().replace(/[^a-z0-9]/g,""); }
 
     check.addEventListener("click",()=>{
       const val = normalize(answer.value);
-
       if(!val){ alert("Guess karo meri jaan 🤭"); return; }
-
       if(accepted.includes(val)){
         reveal.style.display = "block";
         playConfetti();
+        setTimeout(()=> answer.blur(),100);
       } else {
-        alert("nah meri cutu 😝");
+        alert("nah meri cutu 😝 try again");
       }
     });
 
-    answer.addEventListener("keydown",(e)=>{
-      if(e.key === "Enter") check.click();
-    });
+    answer.addEventListener("keydown",(e)=>{ if(e.key === "Enter") check.click(); });
 
     /* confetti */
     function playConfetti(){
-      const canvas = document.getElementById("confetti");
-      const ctx = canvas.getContext("2d");
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      const pieces = [];
-      const colors = ["#ffd166","#ef476f","#06d6a0","#118ab2","#ff8a65"];
-      for(let i=0;i<120;i++){
-        pieces.push({x:Math.random()*canvas.width,y:Math.random()*-canvas.height,vy:2+Math.random()*6,c:colors[Math.floor(Math.random()*colors.length)],r:Math.random()*6+4,rot:Math.random()*360,vr:Math.random()*6-3});
-      }
+      const canvas = document.getElementById("confetti"),
+      ctx = canvas.getContext("2d");
+      canvas.width = innerWidth; canvas.height = innerHeight;
+      const colors=["#ffd166","#ef476f","#06d6a0","#118ab2","#ff8a65"];
+      const pieces=Array.from({length:130},()=>({
+        x:Math.random()*canvas.width,
+        y:Math.random()*-canvas.height,
+        vy:2+Math.random()*6,
+        r:Math.random()*6+4,
+        c:colors[Math.floor(Math.random()*colors.length)],
+        rot:Math.random()*360,
+        vr:Math.random()*6-3
+      }));
       let t=0;
-      function frame(){
+      (function frame(){
         ctx.clearRect(0,0,canvas.width,canvas.height);
         for(let p of pieces){
           p.y+=p.vy; p.x+=Math.sin((p.y+t)/30)*2; p.rot+=p.vr;
@@ -243,16 +298,10 @@
           ctx.fillStyle=p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
           ctx.restore();
         }
-        t++; if(t<300) requestAnimationFrame(frame);
-      }
-      frame();
+        t++; if(t<260) requestAnimationFrame(frame);
+      })();
     }
   </script>
 
 </body>
 </html>
-
-
-
-
-
