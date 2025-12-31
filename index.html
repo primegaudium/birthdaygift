@@ -99,6 +99,17 @@
       height:100%;
       z-index:999;
     }
+
+    /* video pop animation */
+    #surpriseVideo {
+      animation: popIn 0.6s ease-out;
+      border-radius:12px;
+      margin-top:15px;
+    }
+    @keyframes popIn {
+      0% { opacity:0; transform: scale(0.8); }
+      100% { opacity:1; transform: scale(1); }
+    }
   </style>
 </head>
 
@@ -129,22 +140,23 @@
       <div class="hint">Hint: no hint heh pagal.</div>
     </div>
 
+    <!-- 🎉 Reveal Box -->
     <div class="reveal" id="reveal">
-  <div class="final-msg">
-    <h2 style="margin:6px 0">You did it 🎉</h2>
-    <h2 style="margin:6px 0"> HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
+      <div class="final-msg">
+        <h2 style="margin:6px 0">You did it 🎉</h2>
+        <h2 style="margin:6px 0"> HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
 
-    <div style="margin-top:12px">
-      <p class="small">look what I made for you 😺💖</p>
-      
-      <!-- 🎥 Cute Video -->
-      <video id="surpriseVideo" width="100%" playsinline autoplay muted loop style="border-radius:12px; margin-top:10px;">
-        <source src="cute.mp4" type="video/mp4" />
-        Your browser doesn't support video.
-      </video>
+        <div style="margin-top:12px">
+          <p class="small">look what I made for you 😺💖</p>
+          
+          <!-- 🎥 Cute Video -->
+          <video id="surpriseVideo" width="100%" playsinline autoplay muted loop>
+            <source src="cute.mp4" type="video/mp4" />
+            Your browser doesn't support video.
+          </video>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <footer>I LOVE YOU SO MUCH ❤️🦚</footer>
 
@@ -152,18 +164,20 @@
 
 
   <script>
-    // simple answer check (accepts dm, pm, message, text, msg)
+    // elements
     const check = document.getElementById("check");
     const answer = document.getElementById("answer");
     const reveal = document.getElementById("reveal");
 
-
+    // accepted answers
     const accepted = ["chomu", "Chomu", "CHOMU"];
 
+    // normalize input
     function normalize(s){
       return s.trim().toLowerCase().replace(/[^a-z0-9]/g,"");
     }
 
+    // check answer
     check.addEventListener("click", ()=>{
       const val = normalize(answer.value || "");
 
@@ -172,20 +186,16 @@
         return;
       }
 
-if(accepted.includes(val) || val === "dm" || val === "pm"){
-  reveal.style.display = "block";
-  playConfetti();
-  document.getElementById("surpriseVideo").play().catch(()=>{});
-}
-;
-
-
+      if(accepted.includes(val) || val === "dm" || val === "pm"){
+        reveal.style.display = "block";
+        playConfetti();
+        document.getElementById("surpriseVideo").play().catch(()=>{});
       } else {
         alert("Not quite — try another word.");
       }
     });
 
-    // also allow Enter key
+    // Enter key submits
     answer.addEventListener("keydown", (e)=>{
       if(e.key === "Enter"){ check.click(); }
     });
@@ -206,8 +216,6 @@ if(accepted.includes(val) || val === "dm" || val === "pm"){
           x:Math.random()*canvas.width,
           y:Math.random()*-canvas.height,
           vy:2+Math.random()*6,
-          rx:Math.random()*8,
-          ry:Math.random()*8,
           c:colors[Math.floor(Math.random()*colors.length)],
           r:Math.random()*6+4,
           rot:Math.random()*360,
@@ -242,6 +250,3 @@ if(accepted.includes(val) || val === "dm" || val === "pm"){
 
 </body>
 </html>
-
-
-
