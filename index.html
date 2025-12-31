@@ -130,17 +130,21 @@
     </div>
 
     <div class="reveal" id="reveal">
-      <div class="final-msg">
-        <h2 style="margin:6px 0">You did it 🎉</h2>
-        <h2 style="margin:6px 0"> HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
+  <div class="final-msg">
+    <h2 style="margin:6px 0">You did it 🎉</h2>
+    <h2 style="margin:6px 0"> HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
 
-        <div style="margin-top:12px">
-          <p class="small">Play this — I recorded it just for you.</p>
-          <audio controls id="voice" style="width:100%"></audio>
-          <p style="margin-top:10px" class="small"><strong></strong></p>
-        </div>
-      </div>
+    <div style="margin-top:12px">
+      <p class="small">look what I made for you 😺💖</p>
+      
+      <!-- 🎥 Cute Video -->
+      <video id="surpriseVideo" width="100%" playsinline autoplay muted loop style="border-radius:12px; margin-top:10px;">
+        <source src="cute.mp4" type="video/mp4" />
+        Your browser doesn't support video.
+      </video>
     </div>
+  </div>
+</div>
 
     <footer>I LOVE YOU SO MUCH ❤️🦚</footer>
 
@@ -152,7 +156,7 @@
     const check = document.getElementById("check");
     const answer = document.getElementById("answer");
     const reveal = document.getElementById("reveal");
-    const voice = document.getElementById("voice");
+
 
     const accepted = ["chomu", "Chomu", "CHOMU"];
 
@@ -168,14 +172,13 @@
         return;
       }
 
-      if(accepted.includes(val) || val === "dm" || val === "pm"){
-        reveal.style.display = "block";
-        playConfetti();
+if(accepted.includes(val) || val === "dm" || val === "pm"){
+  reveal.style.display = "block";
+  playConfetti();
+  document.getElementById("surpriseVideo").play().catch(()=>{});
+}
+;
 
-        // your audio
-        voice.src = "voice.opus";
-        voice.type = "audio/ogg; codecs=opus"; // helps some browsers recognize format
-        voice.play().catch(()=>{});
 
       } else {
         alert("Not quite — try another word.");
@@ -239,5 +242,6 @@
 
 </body>
 </html>
+
 
 
