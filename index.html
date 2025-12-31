@@ -52,7 +52,6 @@
     }
     @keyframes typing { to { width:100%; } }
 
-    /* inputs */
     input[type=text] {
       width:90%;
       padding:12px;
@@ -75,16 +74,13 @@
       cursor:pointer;
       transition:0.2s;
     }
-    button:hover {
-      filter:brightness(1.15);
-      box-shadow:0 0 16px rgba(255,209,102,0.6);
-    }
+    button:hover { filter:brightness(1.15); box-shadow:0 0 16px rgba(255,209,102,0.6); }
 
-    /* glow reveal */
+    /* reveal pop */
     .reveal {
       display:none;
       margin-top:18px;
-      animation:pop 0.6s ease-out forwards;
+      animation: pop 0.6s ease-out forwards;
     }
     @keyframes pop {
       from {transform:scale(0.9); opacity:0;}
@@ -105,36 +101,19 @@
       to {transform:translateY(-20vh) scale(1.6);}
     }
 
-    /* video pop */
-    #surpriseVideo {
-      animation: popIn 0.8s ease-out;
+    #gifLove {
+      width:100%;
       border-radius:12px;
       margin-top:15px;
-      width:100%;
+      animation:popIn 0.8s ease-out;
     }
     @keyframes popIn {
       0% { opacity:0; transform: scale(0.8); }
       100% { opacity:1; transform: scale(1); }
     }
 
-    /* cat dance */
-    #catDance {
-      display:none;
-      margin-top:20px;
-      animation:catBounce 1s infinite;
-    }
-    @keyframes catBounce {
-      0%,100% {transform:translateY(0);}
-      50% {transform:translateY(-8px);}
-    }
+    footer { margin-top:16px; font-size:12px; color:var(--muted); }
 
-    footer {
-      margin-top:16px;
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    /* confetti canvas */
     #confetti {
       position:fixed;
       left:0;
@@ -145,7 +124,6 @@
       z-index:999;
     }
 
-    /* Mobile responsiveness */
     @media(max-width:480px){
       h1{font-size:22px;}
       .card{padding:20px;}
@@ -188,16 +166,15 @@
     <!-- 🎉 Reveal Section -->
     <div class="reveal" id="reveal">
       <div class="final-msg">
-        <h2 style="margin:6px 0">You did it 🎉</h2>
-        <h2 style="margin:6px 0"> HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
+        <h2>You did it 🎉</h2>
+        <h2>HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
 
         <p class="small">look what I made for you 😺💖</p>
-        <video id="surpriseVideo" playsinline autoplay muted loop>
-          <source src="cute.mp4" type="video/mp4" />
-        </video>
 
-        <!-- 🐱 cat appears after video plays -->
-        <img id="catDance" src="https://media.tenor.com/ro5Egmo5q_sAAAAC/cat-cat-jumping.gif" width="180" style="border-radius:10px;">
+        <!-- 🐱 Replace video with your GIF -->
+        <img id="gifLove" 
+             src="https://media1.tenor.com/m/arqlNu8gyJYAAAAC/cat-cat-jumping.gif" 
+             alt="cute jumping cat">
       </div>
     </div>
 
@@ -221,7 +198,6 @@
     const check = document.getElementById("check");
     const answer = document.getElementById("answer");
     const reveal = document.getElementById("reveal");
-    const catDance = document.getElementById("catDance");
 
     const accepted = ["chomu","Chomu","CHOMU","chomuu","chomu🥺"];
 
@@ -237,10 +213,6 @@
       if(accepted.includes(val)){
         reveal.style.display = "block";
         playConfetti();
-
-        // Show cat after 2 sec of video
-        setTimeout(()=>{ catDance.style.display="block"; }, 2000);
-
       } else {
         alert("Galat! Par cute try 😝");
       }
