@@ -1,174 +1,158 @@
-:root {
-  --bg:#0f1423;
-  --card:rgba(255,255,255,0.08);
-  --accent:#ffd166;
-  --accent2:#ff8a65;
-  --text:#e9eef6;
-  --heart:#ff6b8b;
-  --glass-border:rgba(255,255,255,0.18);
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puzzle for Nishka ✨</title>
 
-/* Laptop & General Layout */
-html, body {
-  height:100%;
-  margin:0;
-  font-family:Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+<style>
+:root{
+  --bg:#0f1423;--card:rgba(255,255,255,0.08);--accent:#ffd166;--accent2:#ff8a65;
+  --text:#e9eef6;--heart:#ff6b8b;--glass-border:rgba(255,255,255,0.18);
 }
-body {
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+body{
   background:radial-gradient(circle at top,#0c182f,#07101e 60%,#000);
-  color:var(--text);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:32px 16px;
-  overflow-x:hidden;
+  color:var(--text);display:flex;justify-content:center;align-items:center;
+  padding:32px 16px;overflow-x:hidden;
 }
-
-/* Main card (responsive max width) */
-.card {
-  background:var(--card);
-  backdrop-filter:blur(16px);
+.card{
+  background:var(--card);backdrop-filter:blur(16px);
   border:1px solid var(--glass-border);
-  border-radius:24px;
-  padding:40px 45px;
-  max-width:600px;
-  width:100%;
-  text-align:center;
-  box-shadow:0 0 65px rgba(0,0,0,0.65);
-  animation: fadeUp 0.8s ease-out;
+  border-radius:24px;padding:40px 45px;max-width:600px;width:100%;
+  text-align:center;box-shadow:0 0 65px rgba(0,0,0,.65);animation:fadeUp .8s ease-out;
 }
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(20px);}
-  to {opacity:1; transform:translateY(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+h1{
+  font-size:clamp(22px,4vw,32px);font-weight:700;overflow:hidden;white-space:nowrap;width:0;
+  animation:typing 3s steps(35) forwards;
+  background:linear-gradient(90deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
+@keyframes typing{to{width:100%}}
+p.lead{color:#a8b3c7;margin-bottom:20px;font-size:clamp(14px,2vw,18px)}
+.small{font-size:clamp(13px,2vw,16px);line-height:1.6;color:#cfd9e6;margin:16px 0;text-align:justify}
 
-/* Typewriter Title */
-h1 {
-  font-size:clamp(22px, 4vw, 32px);
-  font-weight:700;
-  overflow:hidden;
-  white-space:nowrap;
-  width:0;
-  margin-bottom:8px;
-  animation: typing 3s steps(35,end) forwards;
-  background:linear-gradient(90deg,#fff,var(--accent));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+input[type=text]{
+  width:100%;padding:clamp(10px,2vw,16px);border-radius:12px;border:none;
+  background:rgba(255,255,255,.08);color:#fff;font-size:clamp(15px,2.4vw,20px);
+  margin-top:8px;outline:1px solid rgba(255,255,255,.15);transition:.25s;
 }
-@keyframes typing { to { width:100%; } }
+input[type=text]:focus{outline:2px solid var(--accent);background:rgba(255,255,255,.12)}
 
-/* Paragraphs */
-p.lead {
-  color:#a8b3c7;
-  margin-bottom:20px;
-  font-size:clamp(14px, 2vw, 18px);
+button{
+  margin-top:14px;padding:clamp(10px,2vw,14px);border-radius:12px;width:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));color:#012;
+  font-weight:700;font-size:clamp(15px,2.6vw,20px);cursor:pointer;transition:.3s;
+  border:none;box-shadow:0 0 12px rgba(255,209,102,.35);
 }
-.small {
-  font-size:clamp(13px, 2vw, 16px);
-  line-height:1.6;
-  color:#cfd9e6;
-  margin:16px 0;
-  text-align:justify;
-}
+button:hover{filter:brightness(1.18);box-shadow:0 0 18px rgba(255,209,102,.6)}
 
-/* Inputs */
-input[type=text] {
-  width:100%;
-  padding:clamp(10px, 1.8vw, 16px);
-  border-radius:12px;
-  border:none;
-  background:rgba(255,255,255,0.08);
-  color:#fff;
-  font-size:clamp(15px, 2.4vw, 20px);
-  margin-top:8px;
-  outline:1px solid rgba(255,255,255,0.15);
-  transition:0.25s;
-}
-input[type=text]:focus {
-  outline:2px solid var(--accent);
-  background:rgba(255,255,255,0.12);
-}
+.reveal{display:none;margin-top:25px;animation:pop .6s ease-out forwards}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 
-/* Buttons */
-button {
-  margin-top:14px;
-  padding:clamp(10px, 2vw, 14px);
-  border-radius:12px;
-  width:100%;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#012;
-  font-weight:700;
-  font-size:clamp(15px, 2.6vw, 20px);
-  cursor:pointer;
-  transition:0.3s;
-  border:none;
-  box-shadow:0 0 12px rgba(255,209,102,0.35);
+.final-msg h2:first-child{
+  font-size:clamp(20px,3vw,28px);
+  background:linear-gradient(90deg,#fff,var(--accent));-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;margin-bottom:8px;
 }
-button:hover {
-  filter:brightness(1.18);
-  box-shadow:0 0 18px rgba(255,209,102,0.6);
-}
-
-/* Reveal animation */
-.reveal {
-  display:none;
-  margin-top:25px;
-  animation: pop 0.6s ease-out forwards;
-}
-@keyframes pop {
-  from {transform:scale(0.9); opacity:0;}
-  to {transform:scale(1); opacity:1;}
-}
-
-/* Headings */
-.final-msg h2:first-child {
-  font-size:clamp(20px, 3vw, 28px);
-  margin-bottom:4px;
-  background:linear-gradient(90deg,#fff,var(--accent));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.final-msg h2:last-of-type {
+.final-msg h2:last-of-type{
+  background:linear-gradient(90deg,#ffafbd,#ffc3a0);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;font-size:clamp(18px,3vw,24px);
   margin-top:0;
-  font-size:clamp(18px, 3vw, 24px);
-  background:linear-gradient(90deg,#ffafbd,#ffc3a0);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
 
-/* GIF Responsive */
-#gifLove {
-  width:100%;
-  border-radius:14px;
-  margin-top:22px;
-  animation:popIn 0.8s ease-out;
+#gifLove{
+  width:100%;border-radius:14px;margin-top:22px;animation:popIn .8s ease-out;
 }
-@keyframes popIn {
-  0% { opacity:0; transform: scale(0.85); }
-  100% { opacity:1; transform: scale(1); }
-}
+@keyframes popIn{0%{opacity:0;transform:scale(.85)}100%{opacity:1;transform:scale(1)}}
 
-/* Hearts */
 .heart-bg span{
-  position:fixed;
-  color:var(--heart);
-  font-size:clamp(14px, 2vw, 22px);
-  animation:float 9s infinite linear;
-  opacity:0.35;
-  pointer-events:none;
-  z-index:-1;
+  position:fixed;color:var(--heart);font-size:clamp(14px,2vw,22px);
+  animation:float 9s infinite linear;opacity:.35;pointer-events:none;z-index:-1;
+}
+@keyframes float{from{transform:translateY(100vh) scale(.7)}to{transform:translateY(-20vh) scale(1.7)}}
+
+#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:999}
+
+@media(min-width:900px){.card{padding:50px 60px}}
+</style>
+</head>
+
+<body>
+
+<div class="heart-bg"></div>
+<canvas id="confetti"></canvas>
+
+<div class="card">
+  <h1>New Year 2026 Puzzle for Nishka✨</h1>
+  <p class="lead">Solve the riddle to reveal a tiny surprise.</p>
+
+  <p><strong>Riddle</strong><br><br>
+  I am soft, I am small <br>hated by your man and I steal his kisses all. <br>
+  I stay with you close, and off-charts his envy goes — <br>What am I?</p>
+
+  <input id="answer" placeholder="Type your answer..." autocomplete="off">
+  <button id="check">Check answer</button>
+
+  <div class="reveal" id="reveal">
+    <h2>You did it 🎉</h2>
+    <h2>HAPPY NEW YEAR 2026 MY PRINCESS ❤️🦚</h2>
+
+    <p class="small"> I love you so much Nishka... (your long paragraph stays) </p>
+
+    <img id="gifLove" src="https://media1.tenor.com/m/arqlNu8gyJYAAAAC/cat-cat-jumping.gif">
+  </div>
+
+  <footer style="margin-top:20px;font-size:14px;opacity:.7">
+    I LOVE YOU SO MUCH ❤️🦚
+  </footer>
+</div>
+
+<script>
+const check=document.getElementById("check"),
+answer=document.getElementById("answer"),
+reveal=document.getElementById("reveal"),
+accepted=["chomu","chomuu","chomu🥺"];
+
+function normalize(s){return s.trim().toLowerCase().replace(/[^a-z0-9]/g,"")}
+
+check.onclick=()=>{
+  const val=normalize(answer.value);
+  if(!val)return alert("Guess karo meri jaan 🤭");
+  if(accepted.includes(val)){reveal.style.display="block";playConfetti();}
+  else alert("nah meri cutu 😝");
+};
+
+answer.onkeydown=e=>{if(e.key==="Enter")check.onclick()};
+
+for(let i=0;i<25;i++){
+  let h=document.createElement("span");
+  h.innerHTML="❤️";h.style.left=Math.random()*100+"%";
+  h.style.animationDelay=(Math.random()*6)+"s";
+  document.body.appendChild(h);
 }
 
-/* Confetti desktop+mobile */
-#confetti {
-  position:fixed;
-  left:0; top:0;
-  width:100%; height:100%;
-  pointer-events:none;
-  z-index:999;
+function playConfetti(){
+  const c=document.getElementById("confetti"),x=c.getContext("2d");
+  c.width=innerWidth;c.height=innerHeight;
+  const pieces=[...Array(130)].map(()=>({
+    x:Math.random()*c.width,y:-50-Math.random()*c.height,
+    vy:2+Math.random()*5,r:5+Math.random()*4,
+    c:["#ffd166","#ef476f","#06d6a0","#118ab2","#ff8a65"][Math.floor(Math.random()*5)],
+    rot:Math.random()*360,vr:Math.random()*6-3
+  }));let t=0;
+  !function f(){
+    x.clearRect(0,0,c.width,c.height);
+    for(const p of pieces){
+      p.y+=p.vy;p.rot+=p.vr;p.x+=Math.sin((p.y+t)/30)*2;
+      x.save();x.translate(p.x,p.y);x.rotate(p.rot*Math.PI/180);
+      x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
+      x.restore();
+    }
+    t++;t<260&&requestAnimationFrame(f);
+  }();
 }
+</script>
 
-/* Desktop tweaks */
-@media(min-width:900px){
-  .card {
-    padding:50px 60px;
-  }
-}
+</body>
+</html>
